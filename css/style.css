@@ -149,15 +149,15 @@ ul     { list-style: none; }
 .btn:active { transform: scale(0.978); }
 
 .btn--hero-primary {
-  background: var(--c-blue);
+  background: var(--c-white);
   color: var(--c-dark);
   font-weight: 700;
   letter-spacing: -0.015em;
-  box-shadow: 0 0 0 1px rgba(0,113,227,0.3), 0 4px 24px rgba(0,113,227,0.35);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
 }
 .btn--hero-primary:hover {
-  background: var(--c-blue-light);
-  box-shadow: 0 0 0 1px rgba(0,113,227,0.5), 0 8px 36px rgba(0,113,227,0.45);
+  background: var(--c-off-white);
+  box-shadow: 0 8px 36px rgba(0,0,0,0.32);
 }
 
 .btn--hero-ghost {
@@ -1254,40 +1254,124 @@ ul     { list-style: none; }
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════════════════════ */
+
+/* ── Tablet (960px) ── */
 @media (max-width: 960px) {
   .bento { grid-template-columns: 1fr 1fr; }
   .bento__card--tall { grid-row: span 1; }
 }
 
+/* ── Tablet / große Phones (768px) ── */
 @media (max-width: 768px) {
+  /* Nav */
   .nav__links  { display: none; }
   .nav__burger { display: flex; }
 
-  .hero__headline { font-size: clamp(3.25rem, 12vw, 6rem); }
+  /* Sections — weniger vertikaler Abstand */
+  .portfolio,
+  .vorteile,
+  .vergleich,
+  .ablauf,
+  .contact       { padding-block: clamp(4rem, 10vw, 6rem); }
+  .about         { padding-block: clamp(5rem, 11vw, 7rem); }
+  .cta-banner    { padding-block: clamp(5rem, 12vw, 8rem); }
+  .section-header { margin-bottom: clamp(2.25rem, 6vw, 3.5rem); }
+  .section-cta   { margin-top: clamp(2rem, 5vw, 3rem); }
+
+  /* Hero */
+  .hero          { padding-block: 7.5rem 4.5rem; }
+  .hero__headline { font-size: clamp(3rem, 11vw, 5.5rem); }
+  .hero__sub      { font-size: 1.05rem; }
+  .hero__sub br   { display: none; }
   .hero__actions  { flex-direction: column; align-items: center; }
+  .hero__actions .btn { width: 100%; max-width: 320px; justify-content: center; }
 
-  .bento { grid-template-columns: 1fr; }
-  .bento__card--wide { grid-column: span 1; }
-  .bento__card--tall { grid-row: span 1; }
+  /* Grids → 1 Spalte */
+  .bento              { grid-template-columns: 1fr; }
+  .bento__card--wide  { grid-column: span 1; }
+  .bento__card--tall  { grid-row: span 1; }
+  .bento__card        { padding: 1.75rem; }
 
-  .portfolio__grid { grid-template-columns: 1fr; }
+  .portfolio__grid      { grid-template-columns: 1fr; }
   .video-card--featured { grid-column: 1; }
 
-  .comparison { grid-template-columns: 1fr; }
+  .comparison         { grid-template-columns: 1fr; }
+  .comparison__card   { padding: 1.75rem 2rem; }
 
   .about__cards { grid-template-columns: 1fr; }
+  .person-card  { padding: 1.75rem; }
 
-  .contact__layout { grid-template-columns: 1fr; gap: 2rem; }
-  .form-row        { grid-template-columns: 1fr; }
+  .contact__layout   { grid-template-columns: 1fr; gap: 2rem; }
+  .contact__info-card { padding: 1.75rem; }
+  .form-row          { grid-template-columns: 1fr; }
 
+  /* CTA Banner */
+  .cta-banner__title { font-size: clamp(2.5rem, 10vw, 5rem); }
+
+  /* Footer */
   .footer__inner { flex-direction: column; text-align: center; }
   .footer__copy  { margin-inline: 0; }
 }
 
+/* ── Mobile Portrait (480px) ── */
 @media (max-width: 480px) {
+  /* Nav */
+  .nav__inner     { padding-block: 0.7rem; }
+  .nav__logo-img  { height: 36px; }
+  .nav__logo-text { font-size: 0.95rem; }
+
+  /* Hero */
+  .hero           { padding-block: 6.5rem 4rem; }
+  .hero__headline { font-size: clamp(2.6rem, 13vw, 4rem); }
+  .hero__sub      { font-size: 0.95rem; }
+  .hero__badge    { font-size: 0.65rem; padding: 0.3rem 0.85rem; margin-bottom: 1.5rem; }
   .hero__chips    { display: none; }
-  .process__step  { grid-template-columns: 48px 1fr; gap: 1.25rem; }
-  .process__num   { width: 42px; height: 42px; font-size: 0.76rem; }
+  .hero__scroll-hint { display: none; }
+
+  /* Section titles */
+  .section-title  { font-size: clamp(1.9rem, 9vw, 2.8rem); letter-spacing: -0.04em; }
+  .section-eyebrow { font-size: 0.68rem; }
+
+  /* Buttons */
+  .btn { padding: 0.72rem 1.35rem; font-size: 0.86rem; }
+
+  /* Bento */
+  .bento__card        { padding: 1.4rem; }
+  .bento__card-icon   { width: 30px; height: 30px; margin-bottom: 1.1rem; }
+  .bento__card-title  { font-size: 1.05rem; }
+  .bento__card-text   { font-size: 0.84rem; }
+
+  /* Portfolio */
+  .video-card--featured .video-card__media { aspect-ratio: 4/3; }
+  .video-card__media                        { aspect-ratio: 4/3; }
+
+  /* Vergleich */
+  .comparison__card   { padding: 1.4rem 1.6rem; }
+  .comparison__item   { font-size: 0.84rem; }
+
+  /* Process */
+  .process__step { grid-template-columns: 46px 1fr; gap: 1.1rem; }
+  .process__num  { width: 40px; height: 40px; font-size: 0.74rem; }
+  .process__title { font-size: 0.98rem; }
+
+  /* Über uns */
+  .person-card        { padding: 1.4rem; }
+  .person-card__name  { font-size: 1.05rem; }
+  .about__tagline     { font-size: clamp(1.15rem, 5vw, 1.5rem); }
+
+  /* Contact */
+  .contact__info-card { padding: 1.4rem; }
+  .contact__tagline   { font-size: 1.05rem; }
+  .contact__detail    { font-size: 0.82rem; }
+
+  /* CTA Banner */
+  .cta-banner         { padding-block: 4.5rem; }
+  .cta-banner__title  { font-size: clamp(2.1rem, 11vw, 3.5rem); }
+  .cta-banner__sub    { font-size: 0.9rem; }
+  .cta-banner__eyebrow { font-size: 0.65rem; }
+
+  /* Footer */
+  .footer__nav { gap: 1rem; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
