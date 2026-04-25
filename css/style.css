@@ -657,6 +657,32 @@ ul     { list-style: none; }
   line-height: 1.22;
 }
 
+/* Portfolio Dots */
+.portfolio__dots {
+  display: none;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 1.25rem;
+}
+.portfolio__dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.14);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--t-sm), transform var(--t-sm), width var(--t-sm);
+}
+.portfolio__dot.is-active {
+  background: var(--c-blue);
+  transform: scale(1.25);
+  width: 20px;
+  border-radius: 980px;
+}
+@media (max-width: 768px) {
+  .portfolio__dots { display: flex; }
+}
+
 /* ═══════════════════════════════════════════════════════════════
    VORTEILE — Bento Grid
    ═══════════════════════════════════════════════════════════════ */
@@ -1292,8 +1318,26 @@ ul     { list-style: none; }
   .bento__card--tall  { grid-row: span 1; }
   .bento__card        { padding: 1.75rem; }
 
-  .portfolio__grid      { grid-template-columns: 1fr; }
-  .video-card--featured { grid-column: 1; }
+  /* Portfolio → horizontaler Scroll-Carousel */
+  .portfolio__grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px;
+    margin-inline: calc(-1 * var(--pad));
+    padding-inline: var(--pad);
+    cursor: grab;
+  }
+  .portfolio__grid:active { cursor: grabbing; }
+  .portfolio__grid::-webkit-scrollbar { display: none; }
+  .portfolio__grid .video-card {
+    flex: 0 0 82vw;
+    scroll-snap-align: start;
+    transform: none !important; /* disable scale hover inside scroll */
+  }
+  .portfolio__grid .video-card--featured { flex: 0 0 88vw; }
 
   .comparison         { grid-template-columns: 1fr; }
   .comparison__card   { padding: 1.75rem 2rem; }

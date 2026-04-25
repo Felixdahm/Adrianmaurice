@@ -311,3 +311,79 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     el.addEventListener('input', () => clearError(el));
   });
 })();
+
+
+/* ═══════════════════════════════════════════════════════════
+   9. PORTFOLIO CAROUSEL — Auto-scroll + dots (mobile only)
+   ═══════════════════════════════════════════════════════════ */
+(function initPortfolioCarousel() {
+  const grid = $('.portfolio__grid');
+  if (!grid) return;
+  if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+  const cards = [...grid.children];
+  const GAP   = 12;
+
+  /* ── Dots ── */
+  const dotsWrap = document.createElement('div');
+  dotsWrap.className = 'portfolio__dots';
+
+  const dots = cards.map((_, i) => {
+    const btn = document.createElement('button');
+    btn.className  = 'portfolio__dot' + (i === 0 ? ' is-active' : '');
+    btn.setAttribute('aria-label', `Projekt ${i + 1}`);
+    btn.addEventListener('click', () => { pauseAuto(8000); scrollTo(i); });
+    dotsWrap.appendChild(btn);
+    return btn;
+  });
+
+  grid.after(dotsWrap);
+
+  /* ── Helpers ── */
+  const cardWidth = () => (cards[0]?.offsetWidth ?? 0) + GAP;
+
+  const scrollTo = (i) => {
+    grid.scrollTo({ left: i * cardWidth(), behavior: 'smooth' });
+  };
+
+  const activeIndex = () => Math.round(grid.scrollLeft / (cardWidth() || 1));
+
+  const updateDots = () => {
+    const idx = activeIndex();
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+  };
+
+  grid.addEventListener('scroll', updateDots, { passive: true });
+
+  /* ── Auto-scroll ── */
+  let timer = null;
+  let paused = false;
+
+  const next = () => {
+    if (paused) return;
+    const max = grid.scrollWidth - grid.clientWidth;
+    if (grid.scrollLeft >= max - 8) {
+      grid.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      grid.scrollBy({ left: cardWidth(), behavior: 'smooth' });
+    }
+  };
+
+  const startAuto = () => {
+    clearInterval(timer);
+    timer = setInterval(next, 3400);
+  };
+
+  const pauseAuto = (resumeAfter = 5000) => {
+    paused = true;
+    clearInterval(timer);
+    setTimeout(() => { paused = false; startAuto(); }, resumeAfter);
+  };
+
+  /* Pause on touch / pointer */
+  grid.addEventListener('touchstart',  () => pauseAuto(6000), { passive: true });
+  grid.addEventListener('pointerdown', () => pauseAuto(5000));
+
+  /* Kick off after reveal delay */
+  setTimeout(startAuto, 1800);
+})();
