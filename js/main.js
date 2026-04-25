@@ -322,7 +322,20 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   if (!window.matchMedia('(max-width: 768px)').matches) return;
 
   const cards = [...grid.children];
-  const GAP   = 12;
+
+  /* ── Helpers ── */
+  // Distance between card starts (card width + gap) — measured live so it's
+  // always correct regardless of viewport size or CSS changes.
+  const stride = () =>
+    cards.length > 1
+      ? cards[1].offsetLeft - cards[0].offsetLeft
+      : cards[0]?.offsetWidth ?? window.innerWidth;
+
+  const activeIndex = () => Math.round(grid.scrollLeft / (stride() || 1));
+
+  const goTo = (i) => {
+    grid.scrollTo({ left: i * stride(), behavior: 'smooth' });
+  };
 
   /* ── Dots ── */
   const dotsWrap = document.createElement('div');
@@ -330,29 +343,19 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
   const dots = cards.map((_, i) => {
     const btn = document.createElement('button');
-    btn.className  = 'portfolio__dot' + (i === 0 ? ' is-active' : '');
+    btn.className = 'portfolio__dot' + (i === 0 ? ' is-active' : '');
     btn.setAttribute('aria-label', `Projekt ${i + 1}`);
-    btn.addEventListener('click', () => { pauseAuto(8000); scrollTo(i); });
+    btn.addEventListener('click', () => { pauseAuto(8000); goTo(i); });
     dotsWrap.appendChild(btn);
     return btn;
   });
 
   grid.after(dotsWrap);
 
-  /* ── Helpers ── */
-  const cardWidth = () => (cards[0]?.offsetWidth ?? 0) + GAP;
-
-  const scrollTo = (i) => {
-    grid.scrollTo({ left: i * cardWidth(), behavior: 'smooth' });
-  };
-
-  const activeIndex = () => Math.round(grid.scrollLeft / (cardWidth() || 1));
-
   const updateDots = () => {
     const idx = activeIndex();
     dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
   };
-
   grid.addEventListener('scroll', updateDots, { passive: true });
 
   /* ── Auto-scroll ── */
@@ -361,12 +364,9 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
   const next = () => {
     if (paused) return;
-    const max = grid.scrollWidth - grid.clientWidth;
-    if (grid.scrollLeft >= max - 8) {
-      grid.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-      grid.scrollBy({ left: cardWidth(), behavior: 'smooth' });
-    }
+    const last = cards.length - 1;
+    const cur  = activeIndex();
+    goTo(cur >= last ? 0 : cur + 1);
   };
 
   const startAuto = () => {
@@ -380,10 +380,8 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     setTimeout(() => { paused = false; startAuto(); }, resumeAfter);
   };
 
-  /* Pause on touch / pointer */
   grid.addEventListener('touchstart',  () => pauseAuto(6000), { passive: true });
   grid.addEventListener('pointerdown', () => pauseAuto(5000));
 
-  /* Kick off after reveal delay */
   setTimeout(startAuto, 1800);
 })();

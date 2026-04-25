@@ -1318,7 +1318,7 @@ ul     { list-style: none; }
   .bento__card--tall  { grid-row: span 1; }
   .bento__card        { padding: 1.75rem; }
 
-  /* Portfolio → horizontaler Scroll-Carousel */
+  /* Portfolio → horizontaler Snap-Carousel */
   .portfolio__grid {
     display: flex;
     overflow-x: auto;
@@ -1326,18 +1326,19 @@ ul     { list-style: none; }
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 12px;
+    /* Break out of container so first card starts flush with padding */
     margin-inline: calc(-1 * var(--pad));
     padding-inline: var(--pad);
-    cursor: grab;
+    padding-bottom: 0.25rem;
   }
-  .portfolio__grid:active { cursor: grabbing; }
   .portfolio__grid::-webkit-scrollbar { display: none; }
-  .portfolio__grid .video-card {
-    flex: 0 0 82vw;
+  /* Each card = exactly the visible content width → one card per view */
+  .portfolio__grid .video-card,
+  .portfolio__grid .video-card--featured {
+    flex: 0 0 calc(100vw - 2 * var(--pad));
     scroll-snap-align: start;
-    transform: none !important; /* disable scale hover inside scroll */
+    transform: none !important;
   }
-  .portfolio__grid .video-card--featured { flex: 0 0 88vw; }
 
   .comparison         { grid-template-columns: 1fr; }
   .comparison__card   { padding: 1.75rem 2rem; }
