@@ -17,7 +17,7 @@
   --c-dark:        #1d1d1f;   /* Apple Dunkeltext */
   --c-black:       #000000;
 
-  /* Apple Akzente + Gradients */
+  /* Apple Akzente + Gradients — AKTIV */
   --c-blue:        #0071e3;   /* Apple CTA Blau */
   --c-blue-light:  #2997ff;
   --c-purple:      #bf5af2;   /* Apple Purple */
