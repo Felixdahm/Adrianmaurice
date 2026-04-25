@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /mnt/c/Users/felix/IdeaProjects/AdrianMaurice/assets/images)",
+      "Bash(cp /mnt/c/Users/felix/IdeaProjects/AdrianMaurice/Logo-Leadpilot.png /mnt/c/Users/felix/IdeaProjects/AdrianMaurice/assets/images/Logo-Leadpilot.png)",
+      "Bash(cmd.exe *)",
+      "Bash(powershell.exe *)",
+      "Bash(python3 -c \"from PIL import Image; print\\('ok'\\)\")",
+      "Bash(python -c \"from PIL import Image; print\\('ok'\\)\")",
+      "Bash(python3 *)",
+      "Bash(where python3.exe)",
+      "Bash(where python.exe)",
+      "Bash(C:/Python314/python.exe -c \"from PIL import Image; print\\('pillow ok'\\)\")"
+    ]
+  }
+}
