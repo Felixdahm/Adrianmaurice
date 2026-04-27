@@ -1381,17 +1381,17 @@ ul     { list-style: none; }
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     gap: 12px;
-    /* Break out of container so first card starts flush with padding */
     margin-inline: calc(-1 * var(--pad));
-    padding-inline: var(--pad);
+    padding-inline-start: var(--pad);
+    padding-inline-end: calc(var(--pad) + 2.5rem);
     padding-bottom: 0.25rem;
   }
   .portfolio__grid::-webkit-scrollbar { display: none; }
-  /* Each card = exactly the visible content width → one card per view */
+  /* Cards etwas schmaler → Peek des nächsten sichtbar */
   .portfolio__grid .video-card,
   .portfolio__grid .video-card--wide,
   .portfolio__grid .video-card--featured {
-    flex: 0 0 calc(100vw - 2 * var(--pad));
+    flex: 0 0 calc(100vw - 2 * var(--pad) - 2.5rem);
     scroll-snap-align: start;
     transform: none !important;
   }
