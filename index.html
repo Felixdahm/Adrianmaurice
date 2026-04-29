@@ -28,7 +28,7 @@
         <li><a href="#vergleich" class="nav__link">Vergleich</a></li>
         <li><a href="#ablauf"    class="nav__link">Ablauf</a></li>
         <li><a href="#about"     class="nav__link">Über uns</a></li>
-        <li><a href="#contact" class="nav__link nav__link--cta">Termin buchen</a></li>
+        <li><a href="#contact" class="nav__link nav__link--cta">Kostenloses Erstgespräch</a></li>
       </ul>
       <button class="nav__burger" id="navBurger" aria-label="Menü öffnen">
         <span></span><span></span><span></span>
@@ -40,7 +40,7 @@
       <a href="#vergleich" class="nav__mobile-link">Vergleich</a>
       <a href="#ablauf"    class="nav__mobile-link">Ablauf</a>
       <a href="#about"     class="nav__mobile-link">Über uns</a>
-      <a href="#contact" class="nav__mobile-link nav__mobile-link--cta">Termin buchen</a>
+      <a href="#contact" class="nav__mobile-link nav__mobile-link--cta">Kostenloses Erstgespräch</a>
     </div>
   </nav>
 
@@ -67,8 +67,8 @@
             KI Video Agentur
           </div>
           <h1 class="hero__headline reveal reveal--delay-1">
-            Wir verwandeln dein Angebot
-            <em class="hero__headline-em">in ein Erlebnis, das fesselt und verkauft.</em>
+            Wir verwandeln dein<br>
+            <em class="hero__headline-em">Angebot in ein Filmerlebnis,<br>das fesselt und verkauft.</em>
           </h1>
           <p class="hero__sub reveal reveal--delay-2">
             Sichtbarkeit, die garantiert aus der Masse heraussticht.
@@ -80,15 +80,14 @@
         </div>
 
         <div class="hero__video-wrap reveal reveal--delay-2">
-          <video class="hero__video" autoplay muted loop playsinline>
-            <!-- src="assets/videos/showreel.mp4" -->
-          </video>
-          <div class="hero__video-overlay" aria-hidden="true">
-            <div class="hero__video-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg>
-            </div>
-            <span class="hero__video-label">Showreel</span>
-          </div>
+          <iframe
+            class="hero__yt-frame"
+            src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1&color=white"
+            title="Leadpilot Showreel"
+
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
 
       </div>
@@ -204,16 +203,18 @@
       <div class="container">
         <div class="section-header reveal">
           <p class="section-eyebrow">Was uns unterscheidet</p>
-          <h2 class="section-title">Mehr als<br>nur ein Video.</h2>
+          <h2 class="section-title">Leistungen die<br>überzeugen.</h2>
         </div>
 
         <div class="bento">
 
           <div class="bento__card bento__card--tall bento__card--accent reveal" data-hover>
             <div class="bento__card-icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M4 28L28 4M12 8H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2"/>
-                <circle cx="16" cy="16" r="4"/>
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 28V6"/>
+                <path d="M4 28h24"/>
+                <path d="M7 20l6-7 5 4 8-10"/>
+                <path d="M21 7h5v5"/>
               </svg>
             </div>
             <div class="bento__card-body">
@@ -226,8 +227,9 @@
           <div class="bento__card reveal reveal--delay-1" data-hover>
             <div class="bento__card-icon">
               <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="16" cy="16" r="12"/>
-                <path d="M16 9v7l4.5 4.5"/>
+                <path d="M16 3l13 7v12l-13 7L3 22V10z"/>
+                <path d="M16 3v24"/>
+                <path d="M3 10l13 7 13-7"/>
               </svg>
             </div>
             <h3 class="bento__card-title">Keine 2D-Standardvideos</h3>
@@ -237,8 +239,8 @@
           <div class="bento__card reveal reveal--delay-2" data-hover>
             <div class="bento__card-icon">
               <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M4 16a12 12 0 1 0 12-12"/>
-                <path d="M4 8v8h8"/>
+                <path d="M12 27h8M13 23h6"/>
+                <path d="M16 4a8 8 0 0 1 8 8c0 3.2-1.8 5.8-4.5 7.2V21h-7v-1.8C9.8 17.8 8 15.2 8 12a8 8 0 0 1 8-8z"/>
               </svg>
             </div>
             <h3 class="bento__card-title">Komplexe Angebote, einfach erklärt</h3>
@@ -247,15 +249,20 @@
 
           <div class="bento__card bento__card--wide reveal reveal--delay-1" data-hover>
             <div class="bento__card-icon">
-              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="8" width="18" height="14" rx="2"/>
-                <path d="M20 13l10-5v14l-10-5"/>
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M3 11h2l3-3h14l3 3h3a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V12a1 1 0 0 1 1-1z"/>
+                <circle cx="16" cy="17" r="4"/>
+                <line x1="4" y1="4" x2="28" y2="28"/>
               </svg>
             </div>
             <h3 class="bento__card-title">Kein Drehtag nötig</h3>
             <p class="bento__card-text">Alles passiert digital — wir übernehmen den kompletten Prozess von Idee bis fertigem Video. Kein Studio, kein Equipment, kein Aufwand für dich.</p>
           </div>
 
+        </div>
+
+        <div class="section-cta reveal">
+          <a href="#contact" class="btn btn--primary">Kostenloses Erstgespräch</a>
         </div>
 
       </div>
@@ -278,12 +285,11 @@
               <h3>Andere Agenturen</h3>
             </div>
             <ul class="comparison__list">
-              <li class="comparison__item comparison__item--con">Drehtage erforderlich — teuer &amp; aufwendig</li>
-              <li class="comparison__item comparison__item--con">Lieferzeit 8–16 Wochen</li>
-              <li class="comparison__item comparison__item--con">Nur 1–2 Revisionen inklusive</li>
-              <li class="comparison__item comparison__item--con">Plattform-Formate gegen Aufpreis</li>
-              <li class="comparison__item comparison__item--con">Versteckte Zusatzkosten</li>
-              <li class="comparison__item comparison__item--con">Nachträgliche Änderungen sehr teuer</li>
+<li class="comparison__item comparison__item--con">Lieferzeit 6–8 Wochen</li>
+              <li class="comparison__item comparison__item--con">Keine Festpreise — Kosten unklar</li>
+              <li class="comparison__item comparison__item--con">Kein Fokus auf Conversion &amp; Verkauf</li>
+              <li class="comparison__item comparison__item--con">Begrenzte kreative Möglichkeiten</li>
+              <li class="comparison__item comparison__item--con">Keine Transparenz</li>
             </ul>
           </div>
 
@@ -293,8 +299,7 @@
               <span class="comparison__badge">Empfohlen</span>
             </div>
             <ul class="comparison__list">
-              <li class="comparison__item comparison__item--pro">Kein Drehtag — 100&nbsp;% digital</li>
-              <li class="comparison__item comparison__item--pro">Fertig in 1–2 Wochen</li>
+<li class="comparison__item comparison__item--pro">Fertig in 1–2 Wochen</li>
               <li class="comparison__item comparison__item--pro">Festpreis vor Auftragsvergabe</li>
               <li class="comparison__item comparison__item--pro">Verkaufspsychologisch aufgebaut</li>
               <li class="comparison__item comparison__item--pro">Grenzenlose Kreativität mit KI</li>
@@ -322,7 +327,7 @@
             <div class="process__num">01</div>
             <div class="process__body">
               <h3 class="process__title">Kick Off</h3>
-              <p class="process__text">Wir lernen dein Produkt, deine Zielgruppe und deine Ziele kennen. In einem 30-minütigen Call legen wir den Grundstein für dein Video.</p>
+              <p class="process__text">Wir lernen dein Produkt, deine Zielgruppe und deine Ziele kennen. In einem 15-minütigen Call legen wir den Grundstein für dein Video.</p>
             </div>
           </div>
           <div class="process__step reveal reveal--delay-1">
@@ -356,7 +361,7 @@
         </div>
 
         <div class="section-cta reveal">
-          <a href="#contact" class="btn btn--primary">Kostenloses Erstgespräch buchen ↗</a>
+          <a href="#contact" class="btn btn--primary">Kostenloses Erstgespräch</a>
         </div>
       </div>
     </section>
@@ -383,11 +388,6 @@
               </div>
             </div>
             <p class="person-card__bio">[Biografie von Adrian — Was treibt dich an? Was ist dein Hintergrund im 3D-Bereich?]</p>
-            <div class="person-card__tags">
-              <span class="tag">3D Modelling</span>
-              <span class="tag">Animation</span>
-              <span class="tag">Rendering</span>
-            </div>
           </div>
 
           <div class="person-card reveal reveal--delay-2" data-hover>
@@ -399,15 +399,9 @@
               </div>
             </div>
             <p class="person-card__bio">[Biografie von Maurice — Was treibt dich an? Welchen Mehrwert bringst du ins Team?]</p>
-            <div class="person-card__tags">
-              <span class="tag">Strategie</span>
-              <span class="tag">Marketing</span>
-              <span class="tag">Videoproduktion</span>
-            </div>
           </div>
         </div>
 
-        <p class="about__tagline reveal">Bereit für dein nächstes Video?</p>
       </div>
     </section>
 
@@ -518,9 +512,9 @@
       <div class="container">
         <div class="cta-banner__inner reveal">
           <p class="cta-banner__eyebrow">Starte jetzt</p>
-          <h2 class="cta-banner__title">Dein 3D-Video<br>wartet auf dich.</h2>
-          <p class="cta-banner__sub">30 Minuten Erstgespräch — kostenlos, unverbindlich, direkt mit dem Team.</p>
-          <a href="#contact" class="btn btn--white">Termin buchen ↗</a>
+          <h2 class="cta-banner__title">Dein Erklärfilm<br>wartet auf dich.</h2>
+          <p class="cta-banner__sub">15 Minuten Erstgespräch — kostenlos, unverbindlich, direkt mit dem Team.</p>
+          <a href="#contact" class="btn btn--white">Kostenloses Erstgespräch</a>
         </div>
       </div>
     </section>
