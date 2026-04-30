@@ -411,27 +411,6 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     grid.scrollTo({ left: i * stride(), behavior: 'smooth' });
   };
 
-  /* ── Dots ── */
-  const dotsWrap = document.createElement('div');
-  dotsWrap.className = 'portfolio__dots';
-
-  const dots = cards.map((_, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'portfolio__dot' + (i === 0 ? ' is-active' : '');
-    btn.setAttribute('aria-label', `Projekt ${i + 1}`);
-    btn.addEventListener('click', () => { pauseAuto(8000); goTo(i); });
-    dotsWrap.appendChild(btn);
-    return btn;
-  });
-
-  grid.after(dotsWrap);
-
-  const updateDots = () => {
-    const idx = activeIndex();
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-  };
-  grid.addEventListener('scroll', updateDots, { passive: true });
-
   /* ── Auto-scroll ── */
   let timer = null;
   let paused = false;

@@ -1472,8 +1472,8 @@ ul     { list-style: none; }
   .video-card:nth-child(1),
   .video-card:nth-child(2),
   .video-card:nth-child(3),
-  .video-card:nth-child(4),
-  .video-card:nth-child(5) { grid-column: span 1; }
+  .video-card:nth-child(4) { grid-column: span 1; }
+  .video-card:nth-child(5) { grid-column: span 2; order: -1; }
 
   .comparison         { grid-template-columns: 1fr; }
   .comparison__card   { padding: 1.75rem 2rem; }
