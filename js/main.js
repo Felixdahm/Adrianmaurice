@@ -75,7 +75,81 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
 
 /* ═══════════════════════════════════════════════════════════
-   3. SCROLL REVEAL — fade-in + slide-up on enter
+   2. HERO VIDEO — autoplay muted + sound toggle
+   ═══════════════════════════════════════════════════════════ */
+(function initHeroVideo() {
+  const video = $('.hero__video');
+  if (!video) return;
+  const wrap    = video.closest('.hero__video-wrap');
+  const shield  = wrap?.querySelector('.hero__video-shield');
+  const soundBtn = wrap?.querySelector('.hero__video-sound');
+
+  video.addEventListener('canplay', () => shield?.classList.add('is-hidden'), { once: true });
+
+  if (soundBtn) {
+    soundBtn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      soundBtn.setAttribute('data-muted', video.muted ? 'true' : 'false');
+      soundBtn.setAttribute('aria-label', video.muted ? 'Ton einschalten' : 'Ton ausschalten');
+    });
+  }
+})();
+
+
+/* ═══════════════════════════════════════════════════════════
+   3. PORTFOLIO VIDEO LIGHTBOX
+   ═══════════════════════════════════════════════════════════ */
+(function initVideoLightbox() {
+  const modal    = document.getElementById('videoModal');
+  const modalVid = modal?.querySelector('.video-modal__video');
+  const modalBox = modal?.querySelector('.video-modal__box');
+  const closeBtn = modal?.querySelector('.video-modal__close');
+  const backdrop = modal?.querySelector('.video-modal__backdrop');
+  if (!modal || !modalVid || !modalBox) return;
+
+  const open = (src, triggerEl) => {
+    const rect = triggerEl.getBoundingClientRect();
+    const cardCX = rect.left + rect.width  / 2;
+    const cardCY = rect.top  + rect.height / 2;
+    const vpCX   = window.innerWidth  / 2;
+    const vpCY   = window.innerHeight / 2;
+    modalBox.style.transformOrigin =
+      `calc(50% + ${cardCX - vpCX}px) calc(50% + ${cardCY - vpCY}px)`;
+
+    modalVid.src = src;
+    modal.hidden = false;
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      modal.classList.add('is-open');
+      modalVid.play();
+    }));
+    document.body.style.overflow = 'hidden';
+  };
+
+  const close = () => {
+    modal.classList.remove('is-open');
+    modalVid.pause();
+    modalBox.addEventListener('transitionend', () => {
+      modal.hidden = true;
+      modalVid.src = '';
+      document.body.style.overflow = '';
+    }, { once: true });
+  };
+
+  document.querySelectorAll('.video-card__play').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const media = btn.closest('.video-card__media');
+      open(media.querySelector('.video-card__video').src, media);
+    });
+  });
+
+  closeBtn?.addEventListener('click', close);
+  backdrop?.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   4. SCROLL REVEAL — fade-in + slide-up on enter
    ═══════════════════════════════════════════════════════════ */
 (function initReveal() {
   const obs = new IntersectionObserver((entries) => {

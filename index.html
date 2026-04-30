@@ -80,14 +80,27 @@
         </div>
 
         <div class="hero__video-wrap reveal reveal--delay-2">
-          <iframe
-            class="hero__yt-frame"
-            src="https://www.youtube.com/embed/VIDEO_ID?rel=0&modestbranding=1&color=white"
-            title="Leadpilot Showreel"
-
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+          <div class="hero__video-shield" aria-hidden="true"></div>
+          <video
+            class="hero__video"
+            src="assets/videos/hero.mp4"
+            autoplay
+            muted
+            loop
+            playsinline>
+          </video>
+          <button class="hero__video-sound" aria-label="Ton einschalten" data-muted="true">
+            <svg class="hero__sound-icon hero__sound-icon--off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <line x1="23" y1="9" x2="17" y2="15"/>
+              <line x1="17" y1="9" x2="23" y2="15"/>
+            </svg>
+            <svg class="hero__sound-icon hero__sound-icon--on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+          </button>
         </div>
 
       </div>
@@ -108,31 +121,46 @@
 
           <article class="video-card reveal">
             <div class="video-card__media">
-              <iframe class="video-card__iframe" src="https://www.youtube.com/embed/VIDEO_ID_1?rel=0&modestbranding=1" title="Projektname 01" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <video class="video-card__video" src="assets/videos/portfolio-1.mp4" preload="metadata" playsinline></video>
+              <button class="video-card__play" aria-label="Video abspielen">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><polygon points="26,18 50,32 26,46" fill="white"/></svg>
+              </button>
             </div>
           </article>
 
           <article class="video-card reveal reveal--delay-1">
             <div class="video-card__media">
-              <iframe class="video-card__iframe" src="https://www.youtube.com/embed/VIDEO_ID_2?rel=0&modestbranding=1" title="Projektname 02" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <video class="video-card__video" src="assets/videos/portfolio-2.mp4" preload="metadata" playsinline></video>
+              <button class="video-card__play" aria-label="Video abspielen">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><polygon points="26,18 50,32 26,46" fill="white"/></svg>
+              </button>
             </div>
           </article>
 
           <article class="video-card reveal reveal--delay-2">
             <div class="video-card__media">
-              <iframe class="video-card__iframe" src="https://www.youtube.com/embed/VIDEO_ID_3?rel=0&modestbranding=1" title="Projektname 03" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <video class="video-card__video" src="assets/videos/portfolio-3.mp4" preload="metadata" playsinline></video>
+              <button class="video-card__play" aria-label="Video abspielen">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><polygon points="26,18 50,32 26,46" fill="white"/></svg>
+              </button>
             </div>
           </article>
 
           <article class="video-card reveal reveal--delay-1">
             <div class="video-card__media">
-              <iframe class="video-card__iframe" src="https://www.youtube.com/embed/VIDEO_ID_4?rel=0&modestbranding=1" title="Projektname 04" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <video class="video-card__video" src="assets/videos/portfolio-4.mp4" preload="metadata" playsinline></video>
+              <button class="video-card__play" aria-label="Video abspielen">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><polygon points="26,18 50,32 26,46" fill="white"/></svg>
+              </button>
             </div>
           </article>
 
           <article class="video-card reveal reveal--delay-2">
             <div class="video-card__media">
-              <iframe class="video-card__iframe" src="https://www.youtube.com/embed/VIDEO_ID_5?rel=0&modestbranding=1" title="Projektname 05" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <video class="video-card__video" src="assets/videos/portfolio-5.mp4" preload="metadata" playsinline></video>
+              <button class="video-card__play" aria-label="Video abspielen">
+                <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><polygon points="26,18 50,32 26,46" fill="white"/></svg>
+              </button>
             </div>
           </article>
 
@@ -465,6 +493,17 @@
     </section>
 
   </main>
+
+  <!-- VIDEO LIGHTBOX -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Video" hidden>
+    <div class="video-modal__backdrop"></div>
+    <div class="video-modal__box">
+      <button class="video-modal__close" aria-label="Schließen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <video class="video-modal__video" controls playsinline></video>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════
        FOOTER

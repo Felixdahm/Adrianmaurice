@@ -10,7 +10,9 @@
       "Bash(python3 *)",
       "Bash(where python3.exe)",
       "Bash(where python.exe)",
-      "Bash(C:/Python314/python.exe -c \"from PIL import Image; print\\('pillow ok'\\)\")"
+      "Bash(C:/Python314/python.exe -c \"from PIL import Image; print\\('pillow ok'\\)\")",
+      "Bash(ffmpeg -version)",
+      "Bash(git rm *)"
     ]
   }
 }

@@ -1,0 +1,19 @@
+# Uploads (Rohdateien)
+uploads/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Logs
+*.log
+
+# Node (falls später genutzt)
+node_modules/
