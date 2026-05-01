@@ -104,7 +104,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
           video.pause();
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+    }, { threshold: 0 });
     obs.observe(wrap ?? video);
   }
 
