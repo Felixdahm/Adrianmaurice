@@ -80,11 +80,25 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 (function initHeroVideo() {
   const video = $('.hero__video');
   if (!video) return;
-  const wrap    = video.closest('.hero__video-wrap');
-  const shield  = wrap?.querySelector('.hero__video-shield');
+  const wrap     = video.closest('.hero__video-wrap');
+  const shield   = wrap?.querySelector('.hero__video-shield');
   const soundBtn = wrap?.querySelector('.hero__video-sound');
 
   video.addEventListener('canplay', () => shield?.classList.add('is-hidden'), { once: true });
+
+  // On mobile the video is below the fold — use IntersectionObserver to play/pause
+  if (window.matchMedia('(hover: none)').matches) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(wrap ?? video);
+  }
 
   if (soundBtn) {
     soundBtn.addEventListener('click', () => {
@@ -388,7 +402,37 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
 
 /* ═══════════════════════════════════════════════════════════
-   9. PORTFOLIO CAROUSEL — Snap-scroll + dots (mobile only)
+   9. VIDEO THUMBNAILS — Auto-capture first frame as poster
+   ═══════════════════════════════════════════════════════════ */
+(function initVideoPosters() {
+  $$('.video-card__video').forEach(video => {
+    const capture = () => {
+      if (!video.videoWidth) return;
+      const canvas = document.createElement('canvas');
+      canvas.width  = video.videoWidth;
+      canvas.height = video.videoHeight;
+      try {
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        const url = canvas.toDataURL('image/jpeg', 0.75);
+        if (url !== 'data:,') video.poster = url;
+      } catch (_) {}
+    };
+
+    video.addEventListener('seeked', capture, { once: true });
+
+    if (video.readyState >= 1) {
+      video.currentTime = 0.5;
+    } else {
+      video.addEventListener('loadedmetadata', () => {
+        video.currentTime = 0.5;
+      }, { once: true });
+    }
+  });
+})();
+
+
+/* ═══════════════════════════════════════════════════════════
+   10. PORTFOLIO CAROUSEL — Snap-scroll + dots (mobile only)
    ═══════════════════════════════════════════════════════════ */
 (function initPortfolioCarousel() {
   const grid = $('.portfolio__grid');
