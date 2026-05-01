@@ -1452,6 +1452,7 @@ ul     { list-style: none; }
 
   /* Hero */
   .hero          { padding-block: 7.5rem 4.5rem; }
+  .hero__video-sound { display: none; }
   .hero__chips   { justify-content: center; }
   .hero__headline { font-size: clamp(2.6rem, 8vw, 5rem); }
   .hero__sub      { font-size: 1.05rem; }

@@ -94,17 +94,31 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     video.play().catch(() => {});
   });
 
-  // On touch devices the video is below the fold — play/pause via IntersectionObserver
+  // On touch devices the video is below the fold — IntersectionObserver handles play/pause.
+  // iOS ignores preload="auto", so force load() on first intersection, then play on canplay.
   if (window.matchMedia('(hover: none)').matches) {
+    let loaded = false;
+
+    const startVideo = () => {
+      if (loaded) {
+        video.play().catch(() => {});
+        return;
+      }
+      loaded = true;
+      video.load();
+      video.addEventListener('canplay', () => video.play().catch(() => {}), { once: true });
+    };
+
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          video.play().catch(() => {});
+          startVideo();
         } else {
           video.pause();
         }
       });
     }, { threshold: 0 });
+
     obs.observe(wrap ?? video);
   }
 
