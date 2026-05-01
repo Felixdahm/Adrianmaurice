@@ -84,9 +84,17 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   const shield   = wrap?.querySelector('.hero__video-shield');
   const soundBtn = wrap?.querySelector('.hero__video-sound');
 
-  video.addEventListener('canplay', () => shield?.classList.add('is-hidden'), { once: true });
+  const hideShield = () => shield?.classList.add('is-hidden');
+  video.addEventListener('canplay', hideShield, { once: true });
+  video.addEventListener('playing', hideShield, { once: true });
 
-  // On mobile the video is below the fold — use IntersectionObserver to play/pause
+  // Explicit restart in case loop attribute fails (common on mobile)
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  });
+
+  // On touch devices the video is below the fold — play/pause via IntersectionObserver
   if (window.matchMedia('(hover: none)').matches) {
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -96,7 +104,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
           video.pause();
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
     obs.observe(wrap ?? video);
   }
 

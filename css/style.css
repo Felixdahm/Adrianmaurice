@@ -658,7 +658,7 @@ ul     { list-style: none; }
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #000;
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 40%, #1c2333 100%);
 }
 
 .video-card__iframe,
