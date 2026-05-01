@@ -388,7 +388,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
 
 /* ═══════════════════════════════════════════════════════════
-   9. PORTFOLIO CAROUSEL — Auto-scroll + dots (mobile only)
+   9. PORTFOLIO CAROUSEL — Snap-scroll + dots (mobile only)
    ═══════════════════════════════════════════════════════════ */
 (function initPortfolioCarousel() {
   const grid = $('.portfolio__grid');
@@ -397,18 +397,18 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
   const cards = [...grid.children];
 
-  /* ── Helpers ── */
-  // Distance between card starts (card width + gap) — measured live so it's
-  // always correct regardless of viewport size or CSS changes.
-  const stride = () =>
-    cards.length > 1
-      ? cards[1].offsetLeft - cards[0].offsetLeft
-      : cards[0]?.offsetWidth ?? window.innerWidth;
-
-  const activeIndex = () => Math.round(grid.scrollLeft / (stride() || 1));
+  /* ── Navigation ── */
+  const activeIndex = () => {
+    let closest = 0, minDist = Infinity;
+    cards.forEach((card, i) => {
+      const dist = Math.abs(card.offsetLeft - grid.scrollLeft);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    });
+    return closest;
+  };
 
   const goTo = (i) => {
-    grid.scrollTo({ left: i * stride(), behavior: 'smooth' });
+    grid.scrollTo({ left: cards[i].offsetLeft, behavior: 'smooth' });
   };
 
   /* ── Auto-scroll ── */
@@ -417,15 +417,11 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
   const next = () => {
     if (paused) return;
-    const last = cards.length - 1;
-    const cur  = activeIndex();
-    goTo(cur >= last ? 0 : cur + 1);
+    const cur = activeIndex();
+    goTo(cur >= cards.length - 1 ? 0 : cur + 1);
   };
 
-  const startAuto = () => {
-    clearInterval(timer);
-    timer = setInterval(next, 3400);
-  };
+  const startAuto = () => { clearInterval(timer); timer = setInterval(next, 3400); };
 
   const pauseAuto = (resumeAfter = 5000) => {
     paused = true;
@@ -433,6 +429,29 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     setTimeout(() => { paused = false; startAuto(); }, resumeAfter);
   };
 
+  /* ── Dots ── */
+  const dotsContainer = document.createElement('div');
+  dotsContainer.className = 'portfolio__dots';
+  grid.after(dotsContainer);
+
+  cards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'portfolio__dot' + (i === 0 ? ' is-active' : '');
+    dot.setAttribute('aria-label', `Video ${i + 1}`);
+    dot.addEventListener('click', () => { pauseAuto(5000); goTo(i); });
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = [...dotsContainer.children];
+
+  const updateDots = () => {
+    const cur = activeIndex();
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === cur));
+  };
+
+  grid.addEventListener('scroll', updateDots, { passive: true });
+
+  /* ── Events ── */
   grid.addEventListener('touchstart',  () => pauseAuto(6000), { passive: true });
   grid.addEventListener('pointerdown', () => pauseAuto(5000));
 

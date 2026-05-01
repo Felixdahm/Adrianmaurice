@@ -1464,16 +1464,26 @@ ul     { list-style: none; }
   .bento__card--tall  { grid-row: span 1; }
   .bento__card        { padding: 1.75rem; }
 
-  /* Portfolio → 2 Spalten, alle Cards gleich */
+  /* Portfolio → horizontaler Snap-Carousel */
   .portfolio__grid {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
     gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+  .portfolio__grid::-webkit-scrollbar { display: none; }
+  .video-card {
+    flex: 0 0 min(78vw, 340px);
+    scroll-snap-align: start;
   }
   .video-card:nth-child(1),
   .video-card:nth-child(2),
   .video-card:nth-child(3),
-  .video-card:nth-child(4) { grid-column: span 1; }
-  .video-card:nth-child(5) { grid-column: span 2; order: -1; }
+  .video-card:nth-child(4),
+  .video-card:nth-child(5) { grid-column: unset; order: unset; }
 
   .comparison         { grid-template-columns: 1fr; }
   .comparison__card   { padding: 1.75rem 2rem; }
@@ -1523,7 +1533,8 @@ ul     { list-style: none; }
   .bento__card-text   { font-size: 0.84rem; }
 
   /* Portfolio */
-  .portfolio__grid { grid-template-columns: 1fr; gap: 0.875rem; }
+  .portfolio__grid { gap: 0.875rem; }
+  .video-card { flex: 0 0 min(85vw, 300px); }
 
   /* Vergleich */
   .comparison__card   { padding: 1.4rem 1.6rem; }
