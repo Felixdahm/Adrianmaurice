@@ -130,22 +130,22 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   if (!modal || !modalVid || !modalBox) return;
 
   const open = (src, triggerEl) => {
-    const rect = triggerEl.getBoundingClientRect();
-    const cardCX = rect.left + rect.width  / 2;
-    const cardCY = rect.top  + rect.height / 2;
-    const vpCX   = window.innerWidth  / 2;
-    const vpCY   = window.innerHeight / 2;
-    modalBox.style.transformOrigin =
-      `calc(50% + ${cardCX - vpCX}px) calc(50% + ${cardCY - vpCY}px)`;
-
+    // Set src + play() must stay synchronous in the click handler —
+    // iOS Safari blocks play() if called outside a user gesture scope
     modalVid.src = src;
+    modalVid.play().catch(() => {});
+
+    const rect = triggerEl.getBoundingClientRect();
+    modalBox.style.transformOrigin =
+      `calc(50% + ${rect.left + rect.width  / 2 - window.innerWidth  / 2}px) ` +
+      `calc(50% + ${rect.top  + rect.height / 2 - window.innerHeight / 2}px)`;
+
     modal.hidden = false;
+    document.body.style.overflow = 'hidden';
 
     requestAnimationFrame(() => requestAnimationFrame(() => {
       modal.classList.add('is-open');
-      modalVid.play();
     }));
-    document.body.style.overflow = 'hidden';
   };
 
   const close = () => {
