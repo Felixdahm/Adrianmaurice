@@ -658,12 +658,17 @@ ul     { list-style: none; }
 .video-card:nth-child(5) { grid-column: span 2; }
 
 .portfolio .section-header {
-  position: sticky;
-  top: 70px;
-  z-index: 10;
-  background: var(--c-white);
   padding-bottom: 2rem;
   margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .portfolio .section-header {
+    position: sticky;
+    top: 70px;
+    z-index: 10;
+    background: var(--c-white);
+  }
 }
 
 .video-card {
