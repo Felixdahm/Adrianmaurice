@@ -658,6 +658,7 @@ ul     { list-style: none; }
 .video-card:nth-child(5) { grid-column: span 2; }
 
 .portfolio .section-header {
+  position: relative;
   padding-bottom: 2rem;
   margin-bottom: 0;
 }
@@ -1545,8 +1546,18 @@ ul     { list-style: none; }
     padding-bottom: calc(100vh - 100vw * 9 / 16 - 200px);
   }
   .video-card {
+    position: -webkit-sticky;
     position: sticky;
     top: 250px;
+    overflow: visible; /* Fix: overflow:hidden + sticky bricht auf iOS Safari */
+  }
+  .video-card__media {
+    border-radius: 32px; /* Rounded corners auf Media statt Card-Container */
+  }
+  /* Reveal-Animation deaktivieren — Sticky-Stacking ist die Animation */
+  .portfolio .video-card {
+    opacity: 1;
+    transform: none;
   }
   .video-card:nth-child(1) { z-index: 1; }
   .video-card:nth-child(2) { z-index: 2; }
