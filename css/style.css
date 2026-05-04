@@ -1475,26 +1475,18 @@ ul     { list-style: none; }
   .bento__card--tall  { grid-row: span 1; }
   .bento__card        { padding: 1.75rem; }
 
-  /* Portfolio → horizontaler Snap-Carousel */
+  /* Portfolio → 2-Spalten Grid */
   .portfolio__grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    padding-bottom: 0.5rem;
-    scrollbar-width: none;
-  }
-  .portfolio__grid::-webkit-scrollbar { display: none; }
-  .video-card {
-    flex: 0 0 min(78vw, 340px);
-    scroll-snap-align: start;
   }
   .video-card:nth-child(1),
   .video-card:nth-child(2),
   .video-card:nth-child(3),
   .video-card:nth-child(4),
-  .video-card:nth-child(5) { grid-column: unset; order: unset; }
+  .video-card:nth-child(5) { grid-column: unset; }
+  .video-card:last-child { grid-column: 1 / -1; }
 
   .comparison         { grid-template-columns: 1fr; }
   .comparison__card   { padding: 1.75rem 2rem; }
@@ -1544,8 +1536,8 @@ ul     { list-style: none; }
   .bento__card-text   { font-size: 0.84rem; }
 
   /* Portfolio */
-  .portfolio__grid { gap: 0.875rem; }
-  .video-card { flex: 0 0 min(85vw, 300px); }
+  .portfolio__grid { grid-template-columns: 1fr; gap: 0.875rem; }
+  .video-card:last-child { grid-column: unset; }
 
   /* Vergleich */
   .comparison__card   { padding: 1.4rem 1.6rem; }
