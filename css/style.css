@@ -663,14 +663,6 @@ ul     { list-style: none; }
   margin-bottom: 0;
 }
 
-@media (max-width: 480px) {
-  .portfolio .section-header {
-    position: sticky;
-    top: 70px;
-    z-index: 10;
-    background: var(--c-white);
-  }
-}
 
 .video-card {
   border-radius: var(--r-xl);
@@ -1538,33 +1530,12 @@ ul     { list-style: none; }
   .bento__card-title  { font-size: 1.05rem; }
   .bento__card-text   { font-size: 0.84rem; }
 
-  /* Portfolio — flex column mit sticky stacking */
+  /* Portfolio — einspaltig */
   .portfolio__grid {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    padding-bottom: calc(100vh - 100vw * 9 / 16 - 200px);
+    gap: 1rem;
   }
-  .video-card {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 250px;
-    overflow: visible; /* Fix: overflow:hidden + sticky bricht auf iOS Safari */
-  }
-  .video-card__media {
-    border-radius: 32px; /* Rounded corners auf Media statt Card-Container */
-  }
-  /* Reveal-Animation deaktivieren — Sticky-Stacking ist die Animation */
-  .portfolio .video-card {
-    opacity: 1;
-    transform: none;
-  }
-  .video-card:nth-child(1) { z-index: 1; }
-  .video-card:nth-child(2) { z-index: 2; }
-  .video-card:nth-child(3) { z-index: 3; }
-  .video-card:nth-child(4) { z-index: 4; }
-  .video-card:nth-child(5) { z-index: 5; }
-  .video-card:not(:last-child) { margin-bottom: 8vh; }
   .video-card:last-child { grid-column: unset; }
 
   /* Vergleich */
