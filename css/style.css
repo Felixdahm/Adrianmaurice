@@ -634,7 +634,7 @@ ul     { list-style: none; }
 .portfolio .section-header {
   position: sticky;
   top: 70px;
-  z-index: 0;
+  z-index: 10;
   background: var(--c-white);
   padding-bottom: 2rem;
   margin-bottom: 0;
@@ -1522,7 +1522,7 @@ ul     { list-style: none; }
     gap: 0;
     padding-bottom: 280px;
   }
-  .video-card { top: 220px; }
+  .video-card { top: 250px; }
   .video-card:last-child { grid-column: unset; }
 
   /* Vergleich */
