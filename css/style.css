@@ -647,7 +647,7 @@ ul     { list-style: none; }
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   column-gap: 1.25rem;
-  row-gap: 0;
+  row-gap: 1.25rem;
 }
 
 /* 2 große oben, 3 kleine unten — alle 16:9 ohne Lücken */
@@ -672,18 +672,10 @@ ul     { list-style: none; }
   background: var(--c-white);
   border: 1px solid rgba(0,0,0,0.07);
   box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-  position: sticky;
-  top: 300px;
   transition:
     transform var(--t-md) var(--ease-out),
     box-shadow var(--t-md) var(--ease-out);
 }
-.video-card:nth-child(1) { z-index: 1; }
-.video-card:nth-child(2) { z-index: 2; }
-.video-card:nth-child(3) { z-index: 3; }
-.video-card:nth-child(4) { z-index: 4; }
-.video-card:nth-child(5) { z-index: 5; }
-.video-card:not(:last-child) { margin-bottom: 8vh; }
 .video-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 16px 48px rgba(0,0,0,0.12);
@@ -1484,9 +1476,8 @@ ul     { list-style: none; }
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 0.875rem;
-    row-gap: 0;
+    row-gap: 0.875rem;
   }
-  .video-card { top: 245px; }
   .video-card:nth-child(1),
   .video-card:nth-child(2),
   .video-card:nth-child(3),
@@ -1541,14 +1532,23 @@ ul     { list-style: none; }
   .bento__card-title  { font-size: 1.05rem; }
   .bento__card-text   { font-size: 0.84rem; }
 
-  /* Portfolio — flex column so sticky uses full container as containing block */
+  /* Portfolio — flex column mit sticky stacking */
   .portfolio__grid {
     display: flex;
     flex-direction: column;
     gap: 0;
     padding-bottom: calc(100vh - 100vw * 9 / 16 - 200px);
   }
-  .video-card { top: 250px; }
+  .video-card {
+    position: sticky;
+    top: 250px;
+  }
+  .video-card:nth-child(1) { z-index: 1; }
+  .video-card:nth-child(2) { z-index: 2; }
+  .video-card:nth-child(3) { z-index: 3; }
+  .video-card:nth-child(4) { z-index: 4; }
+  .video-card:nth-child(5) { z-index: 5; }
+  .video-card:not(:last-child) { margin-bottom: 8vh; }
   .video-card:last-child { grid-column: unset; }
 
   /* Vergleich */
