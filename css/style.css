@@ -1520,6 +1520,7 @@ ul     { list-style: none; }
     display: flex;
     flex-direction: column;
     gap: 0;
+    padding-bottom: 280px;
   }
   .video-card { top: 220px; }
   .video-card:last-child { grid-column: unset; }
