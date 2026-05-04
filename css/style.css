@@ -614,6 +614,7 @@ ul     { list-style: none; }
 .portfolio {
   background: var(--c-white);
   padding-block: clamp(6rem, 12vw, 10rem);
+  padding-bottom: max(220px, 32vh);
 }
 
 .portfolio__grid {
@@ -633,7 +634,7 @@ ul     { list-style: none; }
 .portfolio .section-header {
   position: sticky;
   top: 70px;
-  z-index: 20;
+  z-index: 0;
   background: var(--c-white);
   padding-bottom: 2rem;
   margin-bottom: 0;
