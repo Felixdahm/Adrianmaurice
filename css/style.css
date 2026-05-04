@@ -1112,6 +1112,8 @@ ul     { list-style: none; }
   border: 1px solid rgba(0,113,227,0.09);
   border-radius: var(--r-xl);
   padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
   transition:
     background var(--t-md) var(--ease-out),
     border-color var(--t-md),
@@ -1135,6 +1137,7 @@ ul     { list-style: none; }
 .person-card__avatar {
   width: 80px; height: 80px;
   border-radius: 50%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1150,6 +1153,9 @@ ul     { list-style: none; }
   border-radius: 50%;
   display: block;
 }
+.about__cards .person-card:nth-child(2) .person-card__avatar img {
+  transform: scale(1.4) translate(-3%, -7%);
+}
 
 .person-card__name {
   font-size: 1.15rem;
@@ -1161,7 +1167,7 @@ ul     { list-style: none; }
 .person-card__role { font-size: 0.78rem; color: var(--c-blue-light); font-weight: 500; opacity: 0.85; }
 .person-card__bio  { font-size: 0.87rem; color: rgba(255,255,255,0.38); line-height: 1.75; margin-bottom: 1.35rem; }
 
-.person-card__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.person-card__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
 .tag {
   font-size: 0.7rem;
   font-weight: 500;
