@@ -614,7 +614,7 @@ ul     { list-style: none; }
 .portfolio {
   background: var(--c-white);
   padding-block: clamp(6rem, 12vw, 10rem);
-  padding-bottom: max(400px, 55vh);
+  padding-bottom: clamp(6rem, 12vw, 10rem);
 }
 
 .portfolio__grid {
@@ -622,6 +622,7 @@ ul     { list-style: none; }
   grid-template-columns: repeat(6, 1fr);
   column-gap: 1.25rem;
   row-gap: 0;
+  padding-bottom: max(400px, 55vh);
 }
 
 /* 2 große oben, 3 kleine unten — alle 16:9 ohne Lücken */
