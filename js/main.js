@@ -75,26 +75,8 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
 
 /* ═══════════════════════════════════════════════════════════
-   2. HERO VIDEO — autoplay muted + sound toggle
+   2. HERO VIDEO — play button opens lightbox (see section 3)
    ═══════════════════════════════════════════════════════════ */
-(function initHeroVideo() {
-  const video   = $('.hero__video');
-  if (!video) return;
-  const wrap    = video.closest('.hero__video-wrap');
-  const playBtn = wrap?.querySelector('.hero__video-play');
-
-  if (playBtn) {
-    playBtn.addEventListener('click', () => {
-      video.muted = false;
-      video.play().catch(() => {
-        // Fallback: browser blocked unmuted autoplay — try muted
-        video.muted = true;
-        video.play().catch(() => {});
-      });
-      playBtn.classList.add('is-hidden');
-    });
-  }
-})();
 
 
 /* ═══════════════════════════════════════════════════════════
@@ -143,6 +125,14 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
       open(media.querySelector('.video-card__video').src, media);
     });
   });
+
+  const heroPlayBtn = $('.hero__video-play');
+  if (heroPlayBtn) {
+    heroPlayBtn.addEventListener('click', () => {
+      const heroWrap = heroPlayBtn.closest('.hero__video-wrap');
+      open($('.hero__video').src, heroWrap);
+    });
+  }
 
   closeBtn?.addEventListener('click', close);
   backdrop?.addEventListener('click', close);
