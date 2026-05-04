@@ -1520,7 +1520,7 @@ ul     { list-style: none; }
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding-bottom: 280px;
+    padding-bottom: calc(100vw * 9 / 16 + 120px);
   }
   .video-card { top: 250px; }
   .video-card:last-child { grid-column: unset; }
