@@ -15,7 +15,11 @@
       "Bash(git rm *)",
       "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 uploads/Maurice.png)",
       "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 uploads/Adrian.jpeg)",
-      "Bash(ffmpeg *)"
+      "Bash(ffmpeg *)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\" \"https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap\")",
+      "Read(//tmp/**)",
+      "Bash(curl -sL \"https://fonts.gstatic.com/s/inter/v20/UcCo3FwrK3iLTcviYwYZ8UA3.woff2\" -o /Users/felixdahm/IdeaProjects/Adrianmaurice/assets/fonts/inter-latin.woff2)",
+      "Bash(curl -sL \"https://fonts.gstatic.com/s/inter/v20/UcC53FwrK3iLTcvneQg7B5iqpJlhKnPCkaL5UUMbndwV.woff2\" -o /Users/felixdahm/IdeaProjects/Adrianmaurice/assets/fonts/inter-latin-italic.woff2)"
     ]
   }
 }
