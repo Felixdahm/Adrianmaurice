@@ -493,7 +493,13 @@ ul     { list-style: none; }
   letter-spacing: -0.01em;
   max-width: 560px;
   margin-inline: auto;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0;
+}
+
+/* Desktop: Buttons vor dem Video, nach dem Text */
+@media (min-width: 769px) {
+  .hero__actions    { order: 1; }
+  .hero__video-wrap { order: 2; }
 }
 
 .hero__actions {
