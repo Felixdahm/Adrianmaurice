@@ -1458,6 +1458,9 @@ ul     { list-style: none; }
 
   /* Hero */
   .hero          { padding-block: 7.5rem 4.5rem; }
+  .hero__layout  { gap: clamp(1.5rem, 3.5vw, 2.5rem); }
+  .hero__badge   { margin-bottom: 1.1rem; }
+  .hero__headline { margin-bottom: 1.1rem; }
 
   .hero__chips   { justify-content: center; }
   .hero__headline { font-size: clamp(2rem, 5.5vw, 3.5rem); }
@@ -1520,10 +1523,10 @@ ul     { list-style: none; }
 
   /* Hero */
   .hero           { padding-block: 6.5rem 4rem; }
-  .hero__layout   { gap: 2rem; }
-  .hero__headline { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .hero__layout   { gap: 1.25rem; }
+  .hero__headline { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 0.85rem; }
   .hero__sub      { font-size: 0.95rem; }
-  .hero__badge    { font-size: 0.65rem; padding: 0.3rem 0.85rem; margin-bottom: 1.5rem; }
+  .hero__badge    { font-size: 0.65rem; padding: 0.3rem 0.85rem; margin-bottom: 0.85rem; }
   .hero__chips    { display: none; }
   .hero__scroll-hint { display: none; }
 
