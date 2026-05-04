@@ -793,31 +793,6 @@ ul     { list-style: none; }
   line-height: 1.3;
 }
 
-/* Portfolio Dots */
-.portfolio__dots {
-  display: none;
-  justify-content: center;
-  gap: 7px;
-  margin-top: 1.25rem;
-}
-.portfolio__dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.14);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: background var(--t-sm), transform var(--t-sm), width var(--t-sm);
-}
-.portfolio__dot.is-active {
-  background: var(--c-blue);
-  transform: scale(1.25);
-  width: 20px;
-  border-radius: 980px;
-}
-@media (max-width: 768px) {
-  .portfolio__dots { display: flex; }
-}
 
 /* ═══════════════════════════════════════════════════════════════
    VORTEILE — Bento Grid
