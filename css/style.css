@@ -614,7 +614,7 @@ ul     { list-style: none; }
 .portfolio {
   background: var(--c-white);
   padding-block: clamp(6rem, 12vw, 10rem);
-  padding-bottom: max(220px, 32vh);
+  padding-bottom: max(400px, 55vh);
 }
 
 .portfolio__grid {
