@@ -14,7 +14,8 @@
       "Bash(ffmpeg -version)",
       "Bash(git rm *)",
       "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 uploads/Maurice.png)",
-      "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 uploads/Adrian.jpeg)"
+      "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 uploads/Adrian.jpeg)",
+      "Bash(ffmpeg *)"
     ]
   }
 }
