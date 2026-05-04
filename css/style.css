@@ -619,7 +619,8 @@ ul     { list-style: none; }
 .portfolio__grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 1.25rem;
+  column-gap: 1.25rem;
+  row-gap: 0;
 }
 
 /* 2 große oben, 3 kleine unten — alle 16:9 ohne Lücken */
@@ -635,10 +636,17 @@ ul     { list-style: none; }
   background: var(--c-white);
   border: 1px solid rgba(0,0,0,0.07);
   box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 70px;
   transition:
     transform var(--t-md) var(--ease-out),
     box-shadow var(--t-md) var(--ease-out);
 }
+.video-card:nth-child(1) { z-index: 1; }
+.video-card:nth-child(2) { z-index: 2; }
+.video-card:nth-child(3) { z-index: 3; }
+.video-card:nth-child(4) { z-index: 4; }
+.video-card:nth-child(5) { z-index: 5; }
 .video-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 16px 48px rgba(0,0,0,0.12);
@@ -1438,7 +1446,8 @@ ul     { list-style: none; }
   .portfolio__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    column-gap: 0.875rem;
+    row-gap: 0;
   }
   .video-card:nth-child(1),
   .video-card:nth-child(2),
@@ -1495,7 +1504,7 @@ ul     { list-style: none; }
   .bento__card-text   { font-size: 0.84rem; }
 
   /* Portfolio */
-  .portfolio__grid { grid-template-columns: 1fr; gap: 0.875rem; }
+  .portfolio__grid { grid-template-columns: 1fr; gap: 0; }
   .video-card:last-child { grid-column: unset; }
 
   /* Vergleich */

@@ -78,55 +78,20 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
    2. HERO VIDEO — autoplay muted + sound toggle
    ═══════════════════════════════════════════════════════════ */
 (function initHeroVideo() {
-  const video = $('.hero__video');
+  const video   = $('.hero__video');
   if (!video) return;
-  const wrap     = video.closest('.hero__video-wrap');
-  const shield   = wrap?.querySelector('.hero__video-shield');
-  const soundBtn = wrap?.querySelector('.hero__video-sound');
+  const wrap    = video.closest('.hero__video-wrap');
+  const playBtn = wrap?.querySelector('.hero__video-play');
 
-  const hideShield = () => shield?.classList.add('is-hidden');
-  video.addEventListener('canplay', hideShield, { once: true });
-  video.addEventListener('playing', hideShield, { once: true });
-
-  // Explicit restart in case loop attribute fails (common on mobile)
-  video.addEventListener('ended', () => {
-    video.currentTime = 0;
-    video.play().catch(() => {});
-  });
-
-  // On touch devices the video is below the fold — IntersectionObserver handles play/pause.
-  // iOS ignores preload="auto", so force load() on first intersection, then play on canplay.
-  if (window.matchMedia('(hover: none)').matches) {
-    let loaded = false;
-
-    const startVideo = () => {
-      if (loaded) {
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      video.muted = false;
+      video.play().catch(() => {
+        // Fallback: browser blocked unmuted autoplay — try muted
+        video.muted = true;
         video.play().catch(() => {});
-        return;
-      }
-      loaded = true;
-      video.load();
-      video.addEventListener('canplay', () => video.play().catch(() => {}), { once: true });
-    };
-
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          startVideo();
-        } else {
-          video.pause();
-        }
       });
-    }, { threshold: 0 });
-
-    obs.observe(wrap ?? video);
-  }
-
-  if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-      video.muted = !video.muted;
-      soundBtn.setAttribute('data-muted', video.muted ? 'true' : 'false');
-      soundBtn.setAttribute('aria-label', video.muted ? 'Ton einschalten' : 'Ton ausschalten');
+      playBtn.classList.add('is-hidden');
     });
   }
 })();
