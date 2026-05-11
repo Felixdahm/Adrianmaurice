@@ -418,11 +418,8 @@
           <h2 class="section-title">Termin buchen.<br>Kostenlos &amp; unverbindlich.</h2>
         </div>
 
-          <!-- Calendly -->
-          <div class="contact__calendly">
-            <div class="calendly-inline-widget" data-url="https://calendly.com/leadpilot-de/30min?hide_gdpr_banner=1" style="min-width:320px;height:1050px;"></div>
-            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-          </div>
+          <!-- Calendly — wird erst nach Cookie-Einwilligung geladen -->
+          <div class="contact__calendly" id="calendlyContainer"></div>
       </div>
     </section>
 
@@ -469,10 +466,25 @@
         <nav class="footer__nav" aria-label="Footer-Navigation">
           <a href="impressum.html">Impressum</a>
           <a href="datenschutz.html">Datenschutz</a>
+          <button class="footer__cookie-btn" id="cookieReset">Cookie-Einstellungen</button>
         </nav>
       </div>
     </div>
   </footer>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner" hidden aria-live="polite">
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text">
+        Wir nutzen <strong>Calendly</strong> für die Terminbuchung. Dabei werden Daten an Server in den USA übertragen.
+        Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+      </p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookieAccept">Akzeptieren</button>
+        <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookieDecline">Ablehnen</button>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js" defer></script>
 </body>

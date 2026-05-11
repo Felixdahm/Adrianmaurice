@@ -1497,9 +1497,93 @@ ul     { list-style: none; }
 }
 .footer__brand { font-size: 0.88rem; font-weight: 700; letter-spacing: -0.02em; color: var(--c-blue-light); }
 .footer__copy  { font-size: 0.76rem; color: rgba(255,255,255,0.25); margin-inline: auto; }
-.footer__nav   { display: flex; gap: 1.25rem; }
+.footer__nav   { display: flex; gap: 1.25rem; align-items: center; }
 .footer__nav a { font-size: 0.76rem; color: rgba(255,255,255,0.3); transition: color var(--t-xs); }
 .footer__nav a:hover { color: var(--c-blue-light); }
+.footer__cookie-btn {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font);
+  transition: color var(--t-xs);
+}
+.footer__cookie-btn:hover { color: var(--c-blue-light); }
+
+/* ── Cookie Banner ── */
+.cookie-banner {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(100% + 2rem));
+  z-index: 2000;
+  width: min(600px, calc(100vw - 2rem));
+  background: rgba(29,29,31,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-xl);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  transition: transform 0.45s var(--ease-out), opacity 0.35s ease;
+  opacity: 0;
+}
+.cookie-banner[hidden] { display: none; }
+.cookie-banner.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+.cookie-banner__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem 1.5rem;
+  flex-wrap: wrap;
+}
+.cookie-banner__text {
+  flex: 1;
+  min-width: 200px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.5;
+  margin: 0;
+}
+.cookie-banner__text strong { color: rgba(255,255,255,0.9); }
+.cookie-banner__text a { color: var(--c-blue-light); text-decoration: none; }
+.cookie-banner__text a:hover { text-decoration: underline; }
+.cookie-banner__actions { display: flex; gap: 0.625rem; flex-shrink: 0; }
+.cookie-banner__btn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 980px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s;
+}
+.cookie-banner__btn:hover { opacity: 0.85; }
+.cookie-banner__btn--accept {
+  background: var(--c-blue);
+  color: #fff;
+}
+.cookie-banner__btn--decline {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+}
+
+/* Calendly declined placeholder */
+.cookie-declined {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--c-off-white);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--c-gray-2);
+}
+.cookie-declined p { color: var(--c-gray-4); margin-bottom: 0.5rem; }
+.cookie-declined a { color: var(--c-blue); }
+.cookie-declined .btn { margin-top: 1.25rem; }
 
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE

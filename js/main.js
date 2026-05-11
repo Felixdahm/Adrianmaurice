@@ -432,3 +432,73 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   });
 })();
 
+
+/* ═══════════════════════════════════════════════════════════
+   10. COOKIE BANNER & CALENDLY CONSENT
+   ═══════════════════════════════════════════════════════════ */
+(function initCookieBanner() {
+  const STORAGE_KEY = 'lp_cookie_consent';
+  const banner      = document.getElementById('cookieBanner');
+  const container   = document.getElementById('calendlyContainer');
+
+  const loadCalendly = () => {
+    if (!container) return;
+    container.innerHTML =
+      '<div class="calendly-inline-widget" data-url="https://calendly.com/leadpilot-de/30min?hide_gdpr_banner=1" style="min-width:320px;height:1050px;"></div>';
+    const s = document.createElement('script');
+    s.src   = 'https://assets.calendly.com/assets/external/widget.js';
+    s.async = true;
+    document.head.appendChild(s);
+  };
+
+  const showDeclined = () => {
+    if (!container) return;
+    container.innerHTML =
+      '<div class="cookie-declined">' +
+        '<p>Du hast die Nutzung von Calendly abgelehnt.</p>' +
+        '<p>Schreib uns direkt: <a href="mailto:info@ki-erklärfilme.de">info@ki-erklärfilme.de</a></p>' +
+        '<button class="btn" id="cookieRevoke">Einwilligung erteilen</button>' +
+      '</div>';
+    document.getElementById('cookieRevoke')?.addEventListener('click', showBanner);
+  };
+
+  const hideBanner = () => {
+    banner.classList.remove('is-visible');
+    banner.addEventListener('transitionend', () => { banner.hidden = true; }, { once: true });
+  };
+
+  const showBanner = () => {
+    banner.hidden = false;
+    requestAnimationFrame(() => requestAnimationFrame(() => banner.classList.add('is-visible')));
+  };
+
+  // Init on load
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored === 'accepted') {
+    loadCalendly();
+  } else if (stored === 'declined') {
+    showDeclined();
+  } else {
+    showBanner();
+  }
+
+  document.getElementById('cookieAccept')?.addEventListener('click', () => {
+    localStorage.setItem(STORAGE_KEY, 'accepted');
+    hideBanner();
+    loadCalendly();
+  });
+
+  document.getElementById('cookieDecline')?.addEventListener('click', () => {
+    localStorage.setItem(STORAGE_KEY, 'declined');
+    hideBanner();
+    showDeclined();
+  });
+
+  // Footer reset button
+  document.getElementById('cookieReset')?.addEventListener('click', () => {
+    localStorage.removeItem(STORAGE_KEY);
+    if (container) container.innerHTML = '';
+    showBanner();
+  });
+})();
+
