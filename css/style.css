@@ -648,6 +648,10 @@ ul     { list-style: none; }
   padding-block: clamp(6rem, 12vw, 10rem);
   padding-bottom: clamp(6rem, 12vw, 10rem);
 }
+.portfolio .container {
+  max-width: 100%;
+  padding-inline: clamp(1rem, 3vw, 3rem);
+}
 
 .portfolio__grid {
   display: grid;
