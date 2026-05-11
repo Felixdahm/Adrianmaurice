@@ -119,20 +119,45 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     }, { once: true });
   };
 
+  const allVideos = [];
+
+  // Portfolio cards
   document.querySelectorAll('.video-card__play').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const media = btn.closest('.video-card__media');
-      open(media.querySelector('.video-card__video').src, media);
+    const wrap = btn.closest('.video-card__media');
+    const video = wrap.querySelector('.video-card__video');
+
+    video.addEventListener('ended', () => {
+      wrap.classList.remove('is-playing');
+      video.removeAttribute('controls');
+      video.currentTime = 0;
     });
+
+    allVideos.push({ btn, wrap, video });
   });
 
-  const heroPlayBtn = $('.hero__video-play');
-  if (heroPlayBtn) {
-    heroPlayBtn.addEventListener('click', () => {
-      const heroWrap = heroPlayBtn.closest('.hero__video-wrap');
-      open($('.hero__video').src, heroWrap);
-    });
+  // Hero video
+  const heroBtn = $('.hero__video-play');
+  const heroVideo = $('.hero__video');
+  if (heroBtn && heroVideo) {
+    const heroWrap = heroBtn.closest('.hero__video-wrap');
+    allVideos.push({ btn: heroBtn, wrap: heroWrap, video: heroVideo });
   }
+
+  // Play handler — stops all others first
+  allVideos.forEach(item => {
+    item.btn.addEventListener('click', () => {
+      allVideos.forEach(other => {
+        if (other !== item) {
+          other.video.pause();
+          other.wrap.classList.remove('is-playing');
+          other.video.removeAttribute('controls');
+        }
+      });
+      item.wrap.classList.add('is-playing');
+      item.video.setAttribute('controls', '');
+      item.video.play();
+    });
+  });
 
   closeBtn?.addEventListener('click', close);
   backdrop?.addEventListener('click', close);

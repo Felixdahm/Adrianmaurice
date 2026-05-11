@@ -602,6 +602,12 @@ ul     { list-style: none; }
   opacity: 0;
   pointer-events: none;
 }
+.hero__video-wrap.is-playing .hero__video-play {
+  display: none;
+}
+.hero__video-wrap.is-playing .hero__video {
+  pointer-events: auto;
+}
 
 .hero__scroll-hint {
   position: absolute;
@@ -719,6 +725,28 @@ ul     { list-style: none; }
 }
 .video-card__play:hover svg {
   transform: scale(1.1);
+}
+.video-card__media.is-playing .video-card__play {
+  display: none;
+}
+
+.video-card__logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2rem;
+  min-height: 110px;
+  background: var(--c-white);
+}
+.video-card__logo-img {
+  max-height: 72px;
+  max-width: 240px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.video-card__logo-img[src=""] {
+  display: none;
 }
 
 /* ── Video Modal ── */
