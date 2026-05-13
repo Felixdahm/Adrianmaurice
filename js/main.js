@@ -451,6 +451,25 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     document.head.appendChild(s);
   };
 
+  const loadMetaPixel = () => {
+    if (document.querySelector('script[src*="fbevents.js"]')) return;
+    const s = document.createElement('script');
+    s.src   = 'https://connect.facebook.net/en_US/fbevents.js';
+    s.async = true;
+    s.onload = () => {
+      fbq('init', '1665370921445629');
+      fbq('track', 'PageView');
+    };
+    document.head.appendChild(s);
+  };
+
+  // Meta Pixel: feuert "Lead" sobald jemand einen Termin bucht
+  window.addEventListener('message', (e) => {
+    if (e.data.event === 'calendly.event_scheduled' && typeof fbq === 'function') {
+      fbq('track', 'Lead');
+    }
+  });
+
   const showDeclined = () => {
     if (!container) return;
     container.innerHTML =
@@ -476,6 +495,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored === 'accepted') {
     loadCalendly();
+    loadMetaPixel();
   } else if (stored === 'declined') {
     showDeclined();
   } else {
@@ -486,6 +506,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     localStorage.setItem(STORAGE_KEY, 'accepted');
     hideBanner();
     loadCalendly();
+    loadMetaPixel();
   });
 
   document.getElementById('cookieDecline')?.addEventListener('click', () => {
