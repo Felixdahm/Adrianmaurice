@@ -1501,6 +1501,15 @@ ul     { list-style: none; }
 }
 .footer__brand { font-size: 0.88rem; font-weight: 700; letter-spacing: -0.02em; color: var(--c-blue-light); }
 .footer__copy  { font-size: 0.76rem; color: rgba(255,255,255,0.25); margin-inline: auto; }
+.footer__disclaimer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.3);
+  max-width: 70ch;
+}
 .footer__nav   { display: flex; gap: 1.25rem; align-items: center; }
 .footer__nav a { font-size: 0.76rem; color: rgba(255,255,255,0.3); transition: color var(--t-xs); }
 .footer__nav a:hover { color: var(--c-blue-light); }
